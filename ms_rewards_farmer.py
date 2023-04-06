@@ -130,11 +130,12 @@ def browserSetup(isMobile: bool, user_agent: str = PC_USER_AGENT, proxy: str = N
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
     if ARGS.edge:
-        browser = webdriver.Edge(options=options) if ARGS.no_webdriver_manager else webdriver.Edge(
-            service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
+        browser = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
     else:
-        browser = webdriver.Chrome(options=options) if ARGS.no_webdriver_manager else webdriver.Chrome(
-            service=ChromeService(ChromeDriverManager().install()), options=options)
+        try:
+            browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        except Exception:
+            browser = webdriver.Chrome(options=options)
     return browser
 
 
