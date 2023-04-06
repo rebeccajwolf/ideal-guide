@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM debian:stable-slim
 
 # Set default environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,21 +9,29 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 RUN chmod 777 /app
 
-RUN apk update && apk add --no-cache bash \
-  curl \
-  coreutils \
-  gtk+2.0 \
-  gdk-pixbuf \
+RUN apt-get update && apt-get install -y \
   tzdata \
+  wget \
+  gpg \
+  python3 \ 
+  python3-pip \
   xvfb \
-  zlib-dev \
-  chromium \
-  chromium-chromedriver \
-  python3 \
-  python3-tkinter \
-  py3-pip
+  xfonts-cyrillic \
+  xfonts-100dpi \
+  xfonts-75dpi \
+  xfonts-base \
+  xfonts-scalable \
+  gtk2-engines-pixbuf \
+&& rm -rf /var/lib/apt/lists/*
+
   
-RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure -f noninteractive tzdata
+
+# Download and install Chrome
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \ 
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+RUN apt-get update && apt-get -y install google-chrome-stable && rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U pip
 
