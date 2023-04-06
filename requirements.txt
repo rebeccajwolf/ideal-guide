@@ -11,3 +11,5 @@ pyyaml
 notifiers
 pyvirtualdisplay
 webdriver-manager>=3.8.5
+gunicorn
+flask
