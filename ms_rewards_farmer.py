@@ -27,7 +27,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.edge.service import Service as EdgeService
 from pyvirtualdisplay import Display
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
@@ -130,10 +131,10 @@ def browserSetup(isMobile: bool, user_agent: str = PC_USER_AGENT, proxy: str = N
         options.add_argument("--disable-dev-shm-usage")
     if ARGS.edge:
         browser = webdriver.Edge(options=options) if ARGS.no_webdriver_manager else webdriver.Edge(
-            service=Service(EdgeChromiumDriverManager().install()), options=options)
+            service=EdgeService(EdgeChromiumDriverManager().install()), options=options)
     else:
         browser = webdriver.Chrome(options=options) if ARGS.no_webdriver_manager else webdriver.Chrome(
-            service=Service(ChromeDriverManager().install()), options=options)
+            service=ChromeService(ChromeDriverManager().install()), options=options)
     return browser
 
 
