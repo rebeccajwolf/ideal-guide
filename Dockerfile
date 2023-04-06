@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.16
+FROM alpine:edge
 
 # Set default environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,7 +18,10 @@ RUN apk update && apk add --no-cache bash \
   xvfb \
   zlib-dev \
   chromium \
-  chromium-chromedriver
+  chromium-chromedriver \
+  python3 \
+  python3-tkinter \
+  py3-pip
   
 RUN cp /usr/share/zoneinfo/$TZ /etc/localtime
 
