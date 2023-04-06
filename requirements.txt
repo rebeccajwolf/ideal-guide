@@ -13,4 +13,3 @@ pyvirtualdisplay
 webdriver-manager
 gunicorn
 flask
-tk
