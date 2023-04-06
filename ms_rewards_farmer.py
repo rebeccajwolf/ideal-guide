@@ -2642,8 +2642,6 @@ def farmer():
         if "executable needs to be in PATH" in str(e):
             prRed('[ERROR] WebDriver not found.\n')
             prRed(str(e))
-            input("Press Enter to close...")
-            os._exit(0)
         if ARGS.error:
             traceback.print_exc()
         print('\n')
