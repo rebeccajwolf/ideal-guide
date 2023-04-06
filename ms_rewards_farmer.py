@@ -1930,7 +1930,7 @@ def sendToTelegram(message):
         messages = [message[i:i+4096] for i in range(0, len(message), 4096)]
         for ms in messages:
             t.notify(
-                message=ms, token=ARGS.telegram[0], chat_id=ARGS.telegram[1], , parse_mode= 'markdown')
+                message=ms, token=ARGS.telegram[0], chat_id=ARGS.telegram[1], parse_mode= 'markdown')
     else:
         t.notify(message=message,
                  token=ARGS.telegram[0], chat_id=ARGS.telegram[1], parse_mode= 'markdown')
