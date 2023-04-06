@@ -1895,7 +1895,7 @@ def createMessage():
             f"(${total_earned / 1300:0.02f}) "\
             f"(€{total_earned / 1500:0.02f}) "\
             f"(AU${total_earned / 1350:0.02f}) "\
-            f"(₹{total_overall / 16:0.02f}) \n"
+            f"(₹{total_earned / 16:0.02f}) \n"
         message += f"💵 Total Overall points: {total_overall} "\
             f"(${total_overall / 1300:0.02f}) "\
             f"(€{total_overall / 1500:0.02f}) "\
