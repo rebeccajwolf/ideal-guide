@@ -12,5 +12,5 @@ sh ./clean_mem.sh ;
 
 echo "Starting Cron..."
 
-exec "cron -f"
+exec cron -f
 
