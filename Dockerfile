@@ -11,6 +11,7 @@ RUN chmod 777 /app
 
 RUN apt-get update && apt-get install -y \
   tzdata \
+  procps \
   cron \
   wget \
   gpg \
