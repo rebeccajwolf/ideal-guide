@@ -2,7 +2,7 @@
 
 env >> /etc/environment
 
-nohup gunicorn keep_alive:app --bind 0.0.0.0:8080 ;
+nohup gunicorn keep_alive:app --bind 0.0.0.0:8080 &
 
 sh ./clean_mem.sh ;
 
