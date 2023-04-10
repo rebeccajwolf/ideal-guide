@@ -1,0 +1,7 @@
+#START
+
+58 4 * * * /app/clean_mem.sh
+
+0 5 * * * /usr/bin/python3 /app/MRB.py --session --fast --headless --telegram "${TOKEN}" "${CHAT_ID}" > /proc/1/fd/1 2>/proc/1/fd/2
+
+#END

@@ -11,10 +11,10 @@ RUN chmod 777 /app
 
 RUN apt-get update && apt-get install -y \
   tzdata \
+  cron \
   wget \
   gpg \
-  python3 \ 
-  python3-tk \
+  python3 \
   python3-pip \
   xvfb \
   xfonts-cyrillic \
@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y \
   xfonts-base \
   xfonts-scalable \
   gtk2-engines-pixbuf \
-&& rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /etc/cron.*/*
 
   
 RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
@@ -41,6 +42,13 @@ RUN pip install -U pip
 COPY . .
 
 RUN pip3 install --no-cache-dir -r requirements.txt
+
+
+COPY crontab /etc/cron.d/crontab
+
+RUN chmod 0644 /etc/cron.d/crontab
+
+RUN crontab /etc/cron.d/crontab
 
 
 # Make the entrypoint executable
