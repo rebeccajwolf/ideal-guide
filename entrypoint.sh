@@ -6,7 +6,7 @@ nohup gunicorn keep_alive:app --bind 0.0.0.0:8080 &
 
 sh ./clean_mem.sh ;
 
-python3 MRB.py --session --fast --headless --telegram "${TOKEN}" "${CHAT_ID}" ;
+#python3 MRB.py --session --fast --headless --telegram "${TOKEN}" "${CHAT_ID}" ;
 
 sh ./clean_mem.sh ;
 
